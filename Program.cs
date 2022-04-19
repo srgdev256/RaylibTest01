@@ -4,6 +4,7 @@ namespace RaylibTest01
 {
     static class Program
     {
+        
         public const int Width = 1280;
         public const int Height = 800;
         
@@ -13,10 +14,8 @@ namespace RaylibTest01
             Raylib.SetConfigFlags(ConfigFlags.FLAG_VSYNC_HINT);
             Raylib.InitWindow(Width, Height, "Hello World");
 
+            RedBall redBall = new RedBall(200, 100, 1);
             
-            int shift = 0;
-            int redBallShift;
-
             BlueBall blueBall = new BlueBall(500, 500, 3);
             
             //GAME LOOP
@@ -25,21 +24,7 @@ namespace RaylibTest01
                 //1. update
                 
                 //red ball update
-                shift += 1;
-
-                if (shift == 200)
-                {
-                    shift = 0;
-                }
-
-                if (shift < 100)
-                {
-                    redBallShift = shift;
-                }
-                else
-                {
-                    redBallShift = 100 - (shift - 100);
-                }
+                redBall.Update();
 
                 //blue ball update
                 blueBall.Update();
@@ -52,13 +37,13 @@ namespace RaylibTest01
                 Raylib.DrawText("Hello, world!", 12, 12, 20, Color.BLACK);
 
                 //line
-                Raylib.DrawLine(200 + redBallShift, 100, blueBall.X, blueBall.Y, Color.GRAY);
+                Raylib.DrawLine(redBall.CurX, redBall.CurY, blueBall.X, blueBall.Y, Color.GRAY);
                 
                 //blue ball draw
                 blueBall.Draw();
                 
                 //red ball draw
-                Raylib.DrawCircle(200 + redBallShift, 100, 32.0f, Color.RED);
+                redBall.Draw();
                 
 
                 
