@@ -4,15 +4,15 @@ namespace RaylibTest01
 {
     public class BlueBall
     {
-        private int _x;
-        private int _y;
+        private float _x;
+        private float _y;
 
-        private int _speed;
+        private float _speed;
+
+        public int X  => (int)_x;
+        public int Y  => (int)_y;
         
-        public int X => _x;
-        public int Y => _y;
-        
-        public BlueBall(int x, int y, int speed)
+        public BlueBall(float x, float y, float speed)
         {
             _x = x;
             _y = y;
@@ -21,30 +21,34 @@ namespace RaylibTest01
 
         public void Update()
         {
+            float delta = _speed * Raylib.GetFrameTime();
+            
             if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
             {
-                _x -= _speed;
+                _x -= delta;
             }
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
             {
-                _x += _speed;
+                _x += delta;
             }
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
             {
-                _y -= _speed;
+                _y -= delta;
             }
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_DOWN))
             {
-                _y += _speed;
+                _y += delta;
             }
         }
 
         public void Draw()
         {
-            Raylib.DrawCircle(_x, _y, 48.0f, Color.BLUE);
+            Raylib.DrawCircle(X, Y, 48.0f, Color.BLUE);
         }
     }
+
+    
 }

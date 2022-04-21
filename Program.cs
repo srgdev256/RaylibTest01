@@ -16,7 +16,7 @@ namespace RaylibTest01
 
             RedBall redBall = new RedBall(200, 100, 1);
             
-            BlueBall blueBall = new BlueBall(500, 500, 3);
+            BlueBall blueBall = new BlueBall(500, 500, 180);
             
             //GAME LOOP
             while (!Raylib.WindowShouldClose())
@@ -35,7 +35,8 @@ namespace RaylibTest01
                 Raylib.ClearBackground(Color.WHITE);
 
                 Raylib.DrawText("Hello, world!", 12, 12, 20, Color.BLACK);
-
+                Raylib.DrawText("FPS: " + Raylib.GetFPS().ToString(), 12, 30, 20, Color.BLACK);
+                
                 //line
                 Raylib.DrawLine(redBall.CurX, redBall.CurY, blueBall.X, blueBall.Y, Color.GRAY);
                 
