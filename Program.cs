@@ -14,9 +14,9 @@ namespace RaylibTest01
             Raylib.SetConfigFlags(ConfigFlags.FLAG_VSYNC_HINT);
             Raylib.InitWindow(Width, Height, "Hello World");
 
-            RedBall redBall = new RedBall(200, 100, 1);
+            RedBall redBall = new RedBall(200, 100, 10);
             
-            BlueBall blueBall = new BlueBall(500, 500, 180);
+            BlueBall blueBall = new BlueBall(500, 500, 10);
             
             //GAME LOOP
             while (!Raylib.WindowShouldClose())
