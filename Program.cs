@@ -14,9 +14,11 @@ namespace RaylibTest01
             Raylib.SetConfigFlags(ConfigFlags.FLAG_VSYNC_HINT);
             Raylib.InitWindow(Width, Height, "Hello World");
 
-            RedBall redBall = new RedBall(200, 100, 10);
+            RedBall redBall = new RedBall(200, 100, 70);
             
-            BlueBall blueBall = new BlueBall(500, 500, 10);
+            BlueBall blueBall = new BlueBall(500, 500, 70);
+
+            BouncingBall bouncingBall = new BouncingBall(600, 200, 70, 28f, Color.GREEN);
             
             //GAME LOOP
             while (!Raylib.WindowShouldClose())
@@ -28,6 +30,9 @@ namespace RaylibTest01
 
                 //blue ball update
                 blueBall.Update();
+                
+                //bouncing ball update
+                bouncingBall.Update();
                 
                 
                 //2. draw
@@ -45,6 +50,9 @@ namespace RaylibTest01
                 
                 //red ball draw
                 redBall.Draw();
+                
+                //bouncing ball draw
+                bouncingBall.Draw();
                 
 
                 
