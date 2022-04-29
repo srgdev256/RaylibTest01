@@ -18,7 +18,7 @@ namespace RaylibTest01
             
             BlueBall blueBall = new BlueBall(500, 500, 70);
 
-            BouncingBall bouncingBall = new BouncingBall(600, 200, 70, 28f, Color.GREEN);
+            BouncingBall bouncingBall = new BouncingBall(600, 200, 200, 32f, Color.GREEN);
             
             //GAME LOOP
             while (!Raylib.WindowShouldClose())
