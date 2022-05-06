@@ -30,6 +30,22 @@ namespace RaylibTest01
             _direction = DirectionUtils.GetRandomDiagonalDirection();
         }
 
+        public BouncingBall(float speed, float radius, Color color):this(GetRandomX((int)radius), GetRandomY((int)radius), speed, radius, color)
+        {
+          
+        }
+
+        private static int GetRandomX(int radius)
+        {
+            return Raylib.GetRandomValue((int)0.0f + radius, Program.Width - radius);
+        }
+        
+        private static int GetRandomY(int radius)
+        {
+            return Raylib.GetRandomValue((int)0.0f + radius, Program.Height - radius);
+        }       
+        
+
         public void Update()
         {
             float delta = _speed * Raylib.GetFrameTime();
@@ -129,6 +145,11 @@ namespace RaylibTest01
         public void Draw()
         {
             Raylib.DrawCircle((int) _x, (int) _y, _radius, _color);
+        }
+
+        public void DrawLineTo(int x, int y)
+        {
+            Raylib.DrawLine(CurX, CurY, x, y, Color.LIME);
         }
     }
 }    

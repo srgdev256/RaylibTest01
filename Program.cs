@@ -1,4 +1,5 @@
-﻿using Raylib_cs;
+﻿using System.Collections.Generic;
+using Raylib_cs;
 
 namespace RaylibTest01
 {
@@ -18,7 +19,7 @@ namespace RaylibTest01
             
             BlueBall blueBall = new BlueBall(500, 500, 70);
 
-            BouncingBall bouncingBall = new BouncingBall(600, 200, 200, 32f, Color.GREEN);
+            List<BouncingBall> bouncingBalls = CreateBouncingBalls(30);
             
             //GAME LOOP
             while (!Raylib.WindowShouldClose())
@@ -32,7 +33,10 @@ namespace RaylibTest01
                 blueBall.Update();
                 
                 //bouncing ball update
-                bouncingBall.Update();
+                foreach (var ball in bouncingBalls)
+                {
+                    ball.Update();
+                }
                 
                 
                 //2. draw
@@ -44,6 +48,11 @@ namespace RaylibTest01
                 
                 //line
                 Raylib.DrawLine(redBall.CurX, redBall.CurY, blueBall.X, blueBall.Y, Color.GRAY);
+
+                foreach (var ball in bouncingBalls)
+                {
+                    ball.DrawLineTo(redBall.CurX, redBall.CurY);
+                }
                 
                 //blue ball draw
                 blueBall.Draw();
@@ -52,15 +61,36 @@ namespace RaylibTest01
                 redBall.Draw();
                 
                 //bouncing ball draw
-                bouncingBall.Draw();
+                foreach (var ball in bouncingBalls)
+                {
+                    ball.Draw();
+                }
                 
-
                 
                 Raylib.EndDrawing();
             }
 
             //CLEANUP
             Raylib.CloseWindow();
+        }
+
+
+        private static List<BouncingBall> CreateBouncingBalls(int ballsCount)
+        {
+            List<BouncingBall> result = new List<BouncingBall>(ballsCount);
+
+            for (int i = 0; i < ballsCount; i++)
+            {
+                float speed = Raylib.GetRandomValue(10, 200);
+                float radius = Raylib.GetRandomValue(16, 64);
+                Color color = Color.GREEN;
+
+                var ball = new BouncingBall(speed, radius, color);
+
+                result.Add(ball);
+            }
+
+            return result;
         }
     }
 }
