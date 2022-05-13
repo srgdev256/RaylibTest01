@@ -50,12 +50,28 @@ namespace RaylibTest01
 
         public void Update()
         {
+            if (_isDead)
+            {
+                return;
+            }
+            
             float delta = _speed * Raylib.GetFrameTime();
 
             const float screenMinX = 0.0f;
             const float screenMaxX = Program.Width;
             const float screenMinY = 0.0f;
             const float screenMaxY = Program.Height;
+
+            if (Raylib.IsMouseButtonPressed(MouseButton.MOUSE_BUTTON_LEFT))
+            {
+                var mousePosition = Raylib.GetMousePosition();
+
+                if (Raylib.CheckCollisionPointCircle(mousePosition, _position, _radius))
+                {
+                    _isDead = true;
+                    return;
+                }
+            }
             
 
             //wall collisions
@@ -140,17 +156,26 @@ namespace RaylibTest01
                     break;
                 }
             }
-
         }
         
 
         public void Draw()
         {
+            if (_isDead)
+            {
+                return;
+            }
+            
             Raylib.DrawCircle(CurX, CurY, _radius, _color);
         }
 
         public void DrawLineTo(int x, int y)
         {
+            if (_isDead)
+            {
+                return;
+            }
+            
             Raylib.DrawLine(CurX, CurY, x, y, Color.LIME);
         }
     }
