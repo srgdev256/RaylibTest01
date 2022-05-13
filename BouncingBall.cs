@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Numerics;
 using Raylib_cs;
 
 namespace RaylibTest01
 {
     public class BouncingBall
     {
-        private float _x;
-        private float _y;
+        private Vector2 _position;
 
         private float _speed;
         private float _radius;
@@ -15,17 +15,19 @@ namespace RaylibTest01
         
         private Color _color;
 
-        public int CurX => (int) _x;
-        public int CurY => (int) _y;
+        private bool _isDead;
+
+        public int CurX => (int) _position.X;
+        public int CurY => (int) _position.Y;
 
 
         public BouncingBall(float x, float y, float speed, float radius, Color color)
         {
-            _x = x;
-            _y = y;
+            _position = new Vector2(x, y);
             _speed = speed;
             _radius = radius;
             _color = color;
+            _isDead = false;
             
             _direction = DirectionUtils.GetRandomDiagonalDirection();
         }
@@ -114,27 +116,27 @@ namespace RaylibTest01
             switch (_direction)
             {
                 case Direction.UpRight:
-                    _x += delta;
-                    _y -= delta;
+                    _position.X += delta;
+                    _position.Y -= delta;
                     break;
 
 
                 case Direction.UpLeft:
-                    _x -= delta;
-                    _y -= delta;
+                    _position.X -= delta;
+                    _position.Y -= delta;
                     break;
 
 
                 case Direction.DownLeft:
-                    _x -= delta;
-                    _y += delta;
+                    _position.X -= delta;
+                    _position.Y += delta;
                     break;
 
 
                 case Direction.DownRight:
                 {
-                    _x += delta;
-                    _y += delta;
+                    _position.X += delta;
+                    _position.Y += delta;
                     break;
                 }
             }
@@ -144,7 +146,7 @@ namespace RaylibTest01
 
         public void Draw()
         {
-            Raylib.DrawCircle((int) _x, (int) _y, _radius, _color);
+            Raylib.DrawCircle(CurX, CurY, _radius, _color);
         }
 
         public void DrawLineTo(int x, int y)
