@@ -19,8 +19,7 @@ namespace RaylibTest01
         public RedBall(float x, float y, float speed)
         {
             _position = new Vector2(x, y);
-            _position.X = x;
-            _position.Y = y;
+            
             _speed = speed;
         }
 
