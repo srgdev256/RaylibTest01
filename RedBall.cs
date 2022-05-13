@@ -1,25 +1,26 @@
 ﻿using System;
+using System.Numerics;
 using Raylib_cs;
 
 namespace RaylibTest01
 {
     public class RedBall
     {
-        private float _x;
-        private float _y;
+        private Vector2 _position;
         
         private float _speed;
 
         private float _shift;
         private float _redBallShift;
         
-        public int CurX => (int)_x + (int)_redBallShift;
-        public int CurY => (int)_y;
+        public int CurX => (int)_position.X + (int)_redBallShift;
+        public int CurY => (int)_position.Y;
         
         public RedBall(float x, float y, float speed)
         {
-            _x = x;
-            _y = y;
+            _position = new Vector2(x, y);
+            _position.X = x;
+            _position.Y = y;
             _speed = speed;
         }
 

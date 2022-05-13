@@ -1,21 +1,22 @@
-﻿using Raylib_cs;
+﻿using System.Numerics;
+using Raylib_cs;
 
 namespace RaylibTest01
 {
     public class BlueBall
     {
-        private float _x;
-        private float _y;
+        private Vector2 _position;
 
         private float _speed;
 
-        public int X  => (int)_x;
-        public int Y  => (int)_y;
+        public int X  => (int)_position.X;
+        public int Y  => (int)_position.Y;
         
         public BlueBall(float x, float y, float speed)
         {
-            _x = x;
-            _y = y;
+            _position = new Vector2(x, y);
+            _position.X = x;
+            _position.Y= y;
             _speed = speed;
         }
 
@@ -25,22 +26,22 @@ namespace RaylibTest01
             
             if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
             {
-                _x -= delta;
+                _position.X -= delta;
             }
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
             {
-                _x += delta;
+                _position.X += delta;
             }
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
             {
-                _y -= delta;
+                _position.Y -= delta;
             }
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_DOWN))
             {
-                _y += delta;
+                _position.Y += delta;
             }
         }
 
