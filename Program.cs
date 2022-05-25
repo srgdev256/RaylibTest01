@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Numerics;
 using Raylib_cs;
 
 namespace RaylibTest01
@@ -19,7 +20,9 @@ namespace RaylibTest01
             
             BlueBall blueBall = new BlueBall(500, 500, 70);
 
-            List<BouncingBall> bouncingBalls = CreateBouncingBalls(30);
+            List<BouncingBall> bouncingBalls = CreateBouncingBalls(5);
+
+            YoYoBall yoYoBall = new YoYoBall(new Vector2(100.0f, 100.0f), new Vector2(Width - 100, Height - 100), Color.BLACK, 16.0f, 48.0f, 6.0f);
             
             //GAME LOOP
             while (!Raylib.WindowShouldClose())
@@ -37,6 +40,8 @@ namespace RaylibTest01
                 {
                     ball.Update();
                 }
+                
+                yoYoBall.Update();
                 
                 
                 //2. draw
@@ -66,6 +71,7 @@ namespace RaylibTest01
                     ball.Draw();
                 }
                 
+                yoYoBall.Draw();
                 
                 Raylib.EndDrawing();
             }
