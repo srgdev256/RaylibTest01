@@ -25,6 +25,8 @@ namespace RaylibTest01
             YoYoBall yoYoBall = new YoYoBall(new Vector2(100.0f, 100.0f), new Vector2(Width - 100, Height - 100), Color.BLACK, 16.0f, 48.0f, 6.0f);
 
             VectorBall vectorBall = new VectorBall(new Vector2(), 200.0f);
+
+            RandomTargetBall randomTargetBall = new RandomTargetBall(new Vector2(30.0f, 30.0f), 100.0f, 30.0f, 5.0f);
             
             //GAME LOOP
             while (!Raylib.WindowShouldClose())
@@ -46,6 +48,8 @@ namespace RaylibTest01
                 yoYoBall.Update();
                 
                 vectorBall.Update();
+                
+                randomTargetBall.Update();
 
                 //2. draw
                 Raylib.BeginDrawing();
@@ -77,6 +81,8 @@ namespace RaylibTest01
                 yoYoBall.Draw();
                 
                 vectorBall.Draw();
+
+                randomTargetBall.Draw();
                 
                 Raylib.EndDrawing();
             }

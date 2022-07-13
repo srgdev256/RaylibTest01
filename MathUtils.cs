@@ -1,3 +1,7 @@
+using System;
+using System.Numerics;
+using Raylib_cs;
+
 namespace RaylibTest01
 {
 	public static class MathUtils
@@ -18,5 +22,7 @@ namespace RaylibTest01
 				return 1.0f - (factor - 0.5f) * 2.0f;
 			}
 		}
+		
+		
 	}
 }
